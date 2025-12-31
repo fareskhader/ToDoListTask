@@ -148,3 +148,32 @@ function filterTodos(task) {
     document.querySelector(`.filter-buttons button[onclick="filterTodos('${task}')"]`).classList.add('active');
     render(task);
 }
+
+function openedit(index) {
+    currentEditIndex = index;
+    const editTodoInput = document.getElementById('editTodoInput');
+    const errorMessage = document.getElementById('edit-error-message');
+    errorMessage.textContent = '';
+    editTodoInput.value = todos[index].text;
+    document.getElementById('editModal').style.display = 'flex';
+}
+function closeEditModal() {
+    document.getElementById('editModal').style.display = 'none';
+}
+function saveEditTodo() {
+    const editTodoInput = document.getElementById('editTodoInput');
+    const errorMessage = document.getElementById('edit-error-message');
+    const newText = editTodoInput.value.trim();
+    if (newText.length < 5) {
+        errorMessage.textContent = '⛔ Task must be at least 5 characters long';
+        return;
+    }
+    todos[currentEditIndex].text = newText;
+    msgshow("Task has been edited.");
+    saveTodos();
+    closeEditModal();
+    render();
+}
+function closeDeleteModal() {document.getElementById('deleteModal').style.display = 'none';}
+function saveTodos() {localStorage.setItem('todos', JSON.stringify(todos));}
+document.addEventListener('DOMContentLoaded', () => {render();});
