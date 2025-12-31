@@ -109,4 +109,9 @@ function add() {
     render();
     msgshow('Task added successfully 🎉');
 >>>>>>> e29784559a890d7c52a69013416389fb0f530732
+
+function deleteAllTodos() {
+    todos = [];
+    saveTodos();
+    render();
 }
