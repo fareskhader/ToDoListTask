@@ -115,3 +115,36 @@ function deleteAllTodos() {
     saveTodos();
     render();
 }
+function deleteAllTodos() {
+    if (todos.length === 0) {
+        msgshow("No tasks to delete.");
+        return;
+    }
+    document.getElementById('deleteAllModal').style.display = 'flex';
+}
+function confirmDeleteTodo() {
+    todos.splice(currentDeleteIndex, 1);
+    closeDeleteModal();
+    msgshow("Task has been deleted.");
+    saveTodos();
+    render();
+}
+function closeDeleteAllModal() {
+    document.getElementById('deleteAllModal').style.display = 'none';
+}
+function confirmDeleteAllDone() {
+    todos = todos.filter(todo => !todo.done);
+    closeDeleteAllDoneModal();
+    msgshow("All done Tasks has been deleted.");
+    saveTodos();
+    render();
+}
+function closeDeleteAllDoneModal() {
+    document.getElementById('deleteAllDoneModal').style.display = 'none';
+}
+function filterTodos(task) {
+    const buttons = document.querySelectorAll('.filter-buttons button');
+    buttons.forEach(button => button.classList.remove('active'));
+    document.querySelector(`.filter-buttons button[onclick="filterTodos('${task}')"]`).classList.add('active');
+    render(task);
+}
