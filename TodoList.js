@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 function toggle(index) {
     todos[index].done = !todos[index].done;
     saveTodos();
@@ -27,7 +26,7 @@ function deleteDoneTodos() {
         return;
     }
         document.getElementById('deleteAllDoneModal').style.display = 'flex';
-=======
+}
 let todos = JSON.parse(localStorage.getItem('todos')) || [];
 let currentEditIndex = null;
 let currentDeleteIndex = null;
@@ -108,8 +107,7 @@ function add() {
     todoInput.value = '';
     render();
     msgshow('Task added successfully 🎉');
->>>>>>> e29784559a890d7c52a69013416389fb0f530732
-
+    }
 function deleteAllTodos() {
     todos = [];
     saveTodos();
